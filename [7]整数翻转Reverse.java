@@ -1,7 +1,10 @@
 class Solution {
     public int reverse(int x) {
-        int reversedX;
-        reversedX = (x % 10) * 100 + (( x / 10) % 10) * 10 + (x / 100);
-        return reversedX;
+        long reversedX = 0;
+        while (x != 0) {
+            reversedX = reversedX * 10 + (x % 10);
+            x /= 10;
+        }
+        return Math.abs(reversedX) > (long)Integer.MAX_VALUE ? 0 : (int)reversedX;
     }
 }

@@ -2,8 +2,6 @@ import Foundation
 
 class Solution {
     var isNegative = false
-    let MAX = 2147483647
-    let MIN = -2147483648
     
     func myAtoi(_ str: String) -> Int {
         let string = preProcessString(str)
@@ -12,13 +10,11 @@ class Solution {
             let value = Int(string[string.count - 1 - i].asciiValue!) - 48
             let times = i > 18 ? Int(pow(10.0, 18.0)) : Int(pow(10.0, Double(i)))
             result += value * times
-            if result > MAX && !isNegative {
-                result = MAX
-                break
+            if result > Int32.max && !isNegative {
+                return Int(Int32.max)
             }
-            if result > -MIN && isNegative {
-                result = -MIN
-                break
+            if -result < Int32.min && isNegative {
+                return Int(Int32.min)
             }
         }
         return isNegative ? -result : result
@@ -51,3 +47,4 @@ class Solution {
         return result
     }
 }
+

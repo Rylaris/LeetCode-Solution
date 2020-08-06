@@ -4,9 +4,7 @@ class Solution {
         var stack = [String]()
         for path in subPath {
             if path == ".." {
-                if !stack.isEmpty {
-                    stack.removeLast()
-                }
+                stack.popLast()
             } else if path != "." {
                 stack.append(String(path))
             }
